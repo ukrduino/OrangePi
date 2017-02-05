@@ -1,4 +1,5 @@
 var express = require('express');
+var sys = require('sys');
 require('shelljs/global');
 
 var router = express.Router();
@@ -9,6 +10,14 @@ router.get('/', function (req, res, next) {
     console.log('Temperature:', temp);
     var uptime = exec('uptime', {silent: true}).output;
     console.log('Uptime:', uptime);
+
+    var exec = require('child_process').exec;
+
+    function LogMe(error, stdout, stderr) {
+        console.log('Uptime 1:', stdout);
+    }
+
+    exec("uptime", LogMe);
     res.render('index', {
         title: 'Express',
         temp: temp,
