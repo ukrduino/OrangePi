@@ -6,11 +6,11 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    var temp = exec('cat /sys/class/thermal/thermal_zone0/temp', {silent: true}).output;
+    var temp = shell.exec('cat /sys/class/thermal/thermal_zone0/temp', {silent: true}).output;
     console.log('Temperature:', temp);
     var output = shell.exec('netstat -rn', {silent: true}).output;
     console.log(output);
-    var uptime = exec('uptime', {silent: true}).output;
+    var uptime = shell.exec('uptime', {silent: true}).output;
     console.log('Uptime:', uptime);
 
     var exec = require('child_process').exec;
