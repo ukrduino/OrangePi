@@ -1,6 +1,6 @@
 var express = require('express');
 var sys = require('sys');
-require('shelljs/global');
+var shell = require('shelljs');
 
 var router = express.Router();
 
@@ -8,6 +8,8 @@ var router = express.Router();
 router.get('/', function (req, res, next) {
     var temp = exec('cat /sys/class/thermal/thermal_zone0/temp', {silent: true}).output;
     console.log('Temperature:', temp);
+    var output = shell.exec('netstat -rn', {silent: true}).output;
+    console.log(output);
     var uptime = exec('uptime', {silent: true}).output;
     console.log('Uptime:', uptime);
 
