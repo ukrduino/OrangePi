@@ -1,1 +1,1 @@
-Node.js webserver for Orange Pi Zero
+Node.js webserver for Orange Pi
