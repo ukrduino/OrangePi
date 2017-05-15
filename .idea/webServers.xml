@@ -2,8 +2,16 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="2da52273-1eab-4e88-8595-386d2ce7391d" name="OrangePiPc2" url="http://localhost">
-        <fileTransfer host="192.168.182.35" port="22" rootFolder="/home/sergey/OrangePi" accessType="SFTP">
+      <webServer id="2da52273-1eab-4e88-8595-386d2ce7391d" name="OrangePi" url="http://localhost">
+        <fileTransfer host="192.168.1.102" port="22" rootFolder="/root/OrangePi" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="394060b2-9671-466a-a6c5-86f001709742" name="OrangePi_Hamachi" url="http://25.59.4.216">
+        <fileTransfer host="25.59.4.216" port="22" rootFolder="/root/OrangePi" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>
