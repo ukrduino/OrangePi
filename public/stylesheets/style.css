@@ -3,6 +3,17 @@
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-    color: #00B7FF;
+#alarm1 {
+    font-size: 100%;
+}
+
+.sensorLine span, .sensorLine button {
+    font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.sensorLine {
+    margin-top: 20px;
+    height: 50px;
 }

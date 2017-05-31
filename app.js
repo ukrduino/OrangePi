@@ -8,8 +8,8 @@ var debug = require('debug')('template:server');
 var http = require('http');
 var port = normalizePort(process.env.PORT || '3000');
 var index = require('./routes/index');
-
 var app = express();
+var storage = require('node-persist');
 
 
 // setting template engine
@@ -126,6 +126,32 @@ function onListening() {
     debug('Listening on ' + bind);
 }
 
+storage.initSync({
+    dir: 'storage',
+    stringify: JSON.stringify,
+    parse: JSON.parse,
+    encoding: 'utf8',
+    logging: false,  // can also be custom logging function
+    continuous: true, // continously persist to disk
+    interval: false, // milliseconds, persist to disk on an interval
+    ttl: false, // ttl* [NEW], can be true for 24h default or a number in MILLISECONDS
+    expiredInterval: 2 * 60 * 1000, // [NEW] every 2 minutes the process will clean-up the expired cache
+    // in some cases, you (or some other service) might add non-valid storage files to your
+    // storage dir, i.e. Google Drive, make this true if you'd like to ignore these files and not throw an error
+    forgiveParseErrors: false // [NEW]
 
-
+});
+//then start using it
+storage.setItem('sensor1', { //TODO create page for setting that parameters from UI
+    'ip': 'http://192.168.1.34:3333',
+    'status': 'offline',
+    'motionDetected': false
+}).then(function () {
+    console.log(storage.getItemSync('sensor1'));
+    var sensor1 = require('./SensorManager').sensorPolling1;
+    // sensor1.on('end', function () {
+    //     console.log('Sensor1 processed');
+    // });
+    sensor1.run();
+});
 module.exports = app;

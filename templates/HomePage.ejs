@@ -1,16 +1,19 @@
 <% layout('BasePage') %>
 <div class="row">
-    <div class="col-lg-6">
-        <div class="row">
-            <p>Мониторинг</p>
-            <p>Температура процессора: <span id="temp"></span>C</p>
+    <div class="sensorLine row" id="alarm1">
+        <div class="col-lg-4">
+            <span class="label label-default sensorName">Датчик движения 1:</span>
+        </div>
+        <div class="col-lg-6">
+            <span class="label label-default sensorStatus">Not Connected</span>
+        </div>
+        <div class="col-lg-1">
+            <button class="btn btn-success arm">ON</button>
+        </div>
+        <div class="col-lg-1">
+            <button class="btn btn-success disarm">OFF</button>
         </div>
     </div>
-    <div class="col-lg-6">
-        <div class="row">
-            <!--<img style="-webkit-user-select: none;" src="http://25.59.4.216:3001" width=100% >-->
-        </div>
-    </div>
-    <a class="btn btn-danger" href="/services/shutdown">Выключить</a>
-    <a class="btn btn-danger" href="/services/reboot">Перезагрузить</a>
 </div>
+
+<!--<img style="-webkit-user-select: none;" src="http://25.59.4.216:3001" width=100% >-->
