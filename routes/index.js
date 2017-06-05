@@ -55,4 +55,19 @@ router.get('/sensor1/status', function (req, res, next) {
     });
 });
 
+router.get('/register', function (req, res, next) {
+    var ip = req.query.ip;
+    storage.removeItem(ip, function (err) {
+        storage.setItem(ip, {
+            'status': 'offline',
+            'motionDetected': false
+        }, function (err) {
+            // done
+            res.status(200);
+            res.end();
+        })
+    });
+});
+
+
 module.exports = router;

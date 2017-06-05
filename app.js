@@ -142,16 +142,10 @@ storage.initSync({
 
 });
 //then start using it
-storage.setItem('sensor1', { //TODO create page for setting that parameters from UI
-    'ip': 'http://192.168.1.34:3333',
-    'status': 'offline',
-    'motionDetected': false
-}).then(function () {
-    console.log(storage.getItemSync('sensor1'));
-    var sensor1 = require('./SensorManager').sensorPolling1;
-    // sensor1.on('end', function () {
-    //     console.log('Sensor1 processed');
-    // });
-    sensor1.run();
+var currentDate = new Date();
+
+storage.setItem('appStart_' + currentDate.toLocaleString(), {'key': 'value'}).then(function () {
+    var task = require('./SensorManager').processSensors;
+    task.run();
 });
 module.exports = app;
